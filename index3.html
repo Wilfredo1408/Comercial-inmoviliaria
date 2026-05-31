@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reserva de Terrenos y Propiedades</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        body{
+            font-family: 'Poppins', sans-serif;
+            background:#f4f6f9;
+        }
+
+        /* ENCABEZADO */
+        .hero{
+            background:linear-gradient(135deg,#198754,#157347);
+            color:white;
+            padding:60px 20px;
+            text-align:center;
+            border-radius:0 0 30px 30px;
+            margin-bottom:40px;
+        }
+
+        /* TARJETAS */
+        .property-card{
+            border:none;
+            border-radius:20px;
+            overflow:hidden;
+            transition:0.4s;
+            cursor:pointer;
+        }
+
+        .property-card:hover{
+            transform:translateY(-10px) scale(1.02);
+            box-shadow:0px 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .selected{
+            border:4px solid #198754 !important;
+            transform:scale(0.98);
+        }
+
+        .card img{
+            height:220px;
+            object-fit:cover;
+        }
+
+        .form-container{
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0px 5px 20px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <div class="hero shadow">
+        <h1 class="fw-bold">Sistema de Reservas Inmobiliarias</h1>
+
+        <p class="lead">
+            Reserva terrenos, casas y locales comerciales fácilmente
+        </p>
+    </div>
+
+    <div class="container mb-5">
+
+        <!-- SECCIÓN DE PROPIEDADES -->
+        <h3 class="mb-4 text-secondary fw-bold">
+            1. Selecciona una propiedad
+        </h3>
+
+        <div class="row g-4 mb-5">
+
+            <!-- TERRENO -->
+            <div class="col-md-4">
+
+                <div class="card property-card h-100 option-card"
+                     data-property="Terreno Residencial">
+
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            Terreno Residencial
+                        </h5>
+
+                        <p class="text-muted">
+                            Terreno amplio ideal para construcción de vivienda.
+                        </p>
+
+                        <span class="badge bg-success">
+                            Disponible
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CASA -->
+            <div class="col-md-4">
+
+                <div class="card property-card h-100 option-card"
+                     data-property="Casa Familiar">
+
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            Casa Familiar
+                        </h5>
+
+                        <p class="text-muted">
+                            Casa moderna de 2 pisos con garaje y jardín.
+                        </p>
+
+                        <span class="badge bg-primary">
+                            Oferta Especial
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LOCAL -->
+            <div class="col-md-4">
+
+                <div class="card property-card h-100 option-card"
+                     data-property="Local Comercial">
+
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            Local Comercial
+                        </h5>
+
+                        <p class="text-muted">
+                            Espacio ideal para negocio en zona céntrica.
+                        </p>
+
+                        <span class="badge bg-warning text-dark">
+                            Comercial
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FORMULARIO -->
+        <h3 class="mb-4 text-secondary fw-bold">
+            2. Datos de la Reserva
+        </h3>
+
+        <form id="formReserva" class="form-container">
+
+            <input type="hidden" id="propiedadSeleccionada">
+
+            <div class="row">
+
+                <!-- NOMBRE -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Nombre Completo
+                    </label>
+
+                    <input type="text"
+                           id="nombre"
+                           class="form-control"
+                           placeholder="Ej. Juan Pérez"
+                           required>
+
+                </div>
+
+                <!-- CORREO -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Correo Electrónico
+                    </label>
+
+                    <input type="email"
+                           id="correo"
+                           class="form-control"
+                           placeholder="correo@gmail.com"
+                           required>
+
+                </div>
+
+                <!-- TELÉFONO -->
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Teléfono
+                    </label>
+
+                    <input type="tel"
+                           id="celular"
+                           class="form-control"
+                           placeholder="71234567"
+                           required>
+
+                </div>
+
+                <!-- FECHA -->
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Fecha de Visita
+                    </label>
+
+                    <input type="date"
+                           id="fecha"
+                           class="form-control"
+                           required>
+
+                </div>
+
+                <!-- HORA -->
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Hora
+                    </label>
+
+                    <select id="hora"
+                            class="form-select"
+                            required>
+
+                        <option value="">
+                            Seleccionar hora
+                        </option>
+
+                        <option>09:00 AM</option>
+                        <option>11:00 AM</option>
+                        <option>02:00 PM</option>
+                        <option>04:00 PM</option>
+
+                    </select>
+
+                </div>
+
+                <!-- COMENTARIOS -->
+                <div class="col-12 mb-3">
+
+                    <label class="form-label fw-semibold">
+                        Comentarios Adicionales
+                    </label>
+
+                    <textarea id="comentarios"
+                              class="form-control"
+                              rows="4"
+                              placeholder="Escribe alguna observación..."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <button type="submit"
+                        class="btn btn-success btn-lg px-5">
+
+                    Reservar Propiedad
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="modalReserva" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-success text-white">
+
+                    <h5 class="modal-title">
+                        Reserva Exitosa
+                    </h5>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <h4 class="text-success">
+                        ¡Reserva Registrada!
+                    </h4>
+
+                    <p>
+                        Tu solicitud fue enviada correctamente.
+                    </p>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+
+                        Cerrar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        // FECHA MÍNIMA
+        document.getElementById('fecha').min =
+            new Date().toISOString().split('T')[0];
+
+        // TARJETAS
+        const cards =
+            document.querySelectorAll('.option-card');
+
+        const propiedad =
+            document.getElementById('propiedadSeleccionada');
+
+        cards.forEach(card => {
+
+            card.addEventListener('click', () => {
+
+                cards.forEach(c =>
+                    c.classList.remove('selected'));
+
+                card.classList.add('selected');
+
+                propiedad.value =
+                    card.getAttribute('data-property');
+
+            });
+
+        });
+
+        // FORMULARIO
+        const form =
+            document.getElementById('formReserva');
+
+        form.addEventListener('submit', async function(e){
+
+            e.preventDefault();
+
+            if(propiedad.value === ""){
+
+                alert("Selecciona una propiedad");
+
+                return;
+            }
+
+            const datos = {
+
+                nombre:
+                    document.getElementById('nombre').value,
+
+                celular:
+                    document.getElementById('celular').value,
+
+                correo:
+                    document.getElementById('correo').value,
+
+                solicitud:
+                    propiedad.value,
+
+                comentarios:
+                    document.getElementById('comentarios').value +
+
+                    " | Fecha: " +
+                    document.getElementById('fecha').value +
+
+                    " | Hora: " +
+                    document.getElementById('hora').value
+            };
+
+            try{
+
+                const respuesta = await fetch(
+                    "https://script.google.com/macros/s/AKfycbywsAKGp62xM5AU78PfMSCLl5QvUHXxAr4jjDaxKk7as2RImAX2hbOCKaJReF2N5JNY8w/exec",
+                    {
+                        method:"POST",
+
+                        body: JSON.stringify(datos)
+                    }
+                );
+
+                const resultado = await respuesta.json();
+
+                if(resultado.resultado === "ok"){
+
+                    const modal =
+                        new bootstrap.Modal(
+                            document.getElementById('modalReserva')
+                        );
+
+                    modal.show();
+
+                    form.reset();
+
+                    cards.forEach(c =>
+                        c.classList.remove('selected'));
+
+                }
+
+            }catch(error){
+
+                alert("Error al enviar los datos");
+
+                console.log(error);
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
+
